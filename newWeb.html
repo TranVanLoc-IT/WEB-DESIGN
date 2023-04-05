@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vie">
+<head>
+</head>
+<meta charset="utf-8" content="width = device-width, initial-scale = 1">
+<title>New Web</title>
+<body>
+    <style>
+        #tab{
+            border: 2px double red;
+            border-radius: 5px;
+            border-collapse: collapse;
+            border-spacing: 10px;
+        }
+        th,td{
+            padding: 10px;
+            text-align: center;
+        }
+        #container{
+            display: flex;
+            flex-shrink: 50px;
+            justify-content: space-around;
+            background-color: rebeccapurple!important;
+            width:auto;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+        }
+        .home,.search,.contact{
+            opacity: 0.5;
+        }
+        .subcontainer{
+            position: absolute;
+            min-width: 80px;
+            height: 0px;
+            transition: height 1s ease-in;
+            overflow: hidden;
+            text-align: center;
+            background-color: black;
+            color:blueviolet ;
+        }
+        .search:hover>.subcontainer{
+            height:150px;
+        }
+        #container>div{
+            min-width: 60px;
+            text-align: center;
+        }
+        #container>div:hover{
+            background-color: coral;
+        }
+        .subcontainer>div:hover{
+            background-color: green;
+            color:red;
+        }
+       ::-webkit-scrollbar{
+        background-color: violet !important;
+       }
+       #animate{
+        transform: translate(-50%, -50%) ;
+        padding: 5px;
+        color:violet !important;
+        font-size:20px;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+        text-decoration: none;
+       }
+       #animate::before,#animate::after{
+        content: '';
+        width: 0px;
+        height: 2px;
+        background-color: violet;
+        animation: Myanimation;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        position:absolute;
+        transform: translateY(-40%);
+        top: 50%;
+       }
+       table{
+        border: 2px solid yellow !important;
+       }
+       th{
+        border:3px dotted red !important;
+        text-align: left !important;
+       }
+       #animate::before{
+        right: 100%;
+       }
+       #animate::after{
+        right:100%;
+       }
+       #animate:hover::before,  #animate:hover::after{
+        width: 20px;
+       }
+       .b1{
+        order:2;
+       }
+       .box{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        align-items: center;
+       }
+       .text{
+        color: red;
+        font-size: 20px;
+       }
+      div#css~div{
+        padding:10px;
+        overflow: hidden;
+        background-color: #f6f6f6;
+      }
+      input[type=text],select{
+        padding:12px;
+        width:100%;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      input[type=button]{
+        cursor: pointer;
+        width:auto;
+        padding: 10px;
+        float: right;
+      }
+       @layer Text{
+        .text{
+            color:yellow;
+            font-size: 50px;
+        }
+       }
+       @keyframes Myanimation{
+        from{
+            width: 0;
+        }
+        to{
+            width:20px;
+        }
+       }
+    </style>
+    <h1>hello loc</h1>
+    <button id="root"></button>
+    <div id="container">
+        <div class="home">Home</div>
+        <div class="search">Search
+            <div class="subcontainer">
+                <div>Map</div>
+                <div>Product</div>
+                <div>Phone</div>
+            </div>
+        </div>
+        <div class="contact">Contact</div>
+    </div>
+    <table border="1">
+        <caption align="center">Danh sach diem</caption>
+        <tr>
+            <th rowspan="2">STT</th>
+            <th rowspan="2">Tên</th>
+            <th colspan="3">Diem</th>
+        </tr>
+        <tr>
+            <th>Toan</th>
+            <th>Li</th>
+            <th>Hoa</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Tran Van Loc</td>
+            <td>9</td>
+            <td>8</td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Gia Han</td>
+            <td>6</td>
+            <td>9</td>
+            <td>8</td>
+        </tr>
+    </table>
+    <meter height="10px" width="20px" value="2" min="0" max="10"></meter>
+      <p id="animate">This animate</p>
+      <p class="text" onclick="addText(this)">Text</p>
+      <div class="di"></div>
+      <div class="box">
+        <div class="b1">Box1</div>
+        <div>Box2</div>
+        <div>Box3</div>
+      </div>
+      <div id="mouse" onmousedown="this.innerHTML+='*'" style="background-color: bisque;">*</div>
+      <img src="./Hình ảnh cá nhân/paris.jpg" alt="Paris hoang hon" onmouseover="display(this)" onmouseout="hint(this)" width="32px" height="32px">
+    <button onclick="calculate()" type="button">Sum</button>
+    <div id="css"><input type="text" id="txtName" placeholder="Enter your name" required></div>
+    <div><input type="text" id="txtPassword" placeholder="Enter your password" required></div>
+    <div><input type="text" id="txtAge" placeholder="Enter your age"></div>
+    <div>
+        <select s name="Choice country" id="txtCountry">
+            <option selected="Chon quoc gia">Chon quoc gia</option>
+            <option value="VietNam">Vietnam</option>
+            <option value="India">India</option>
+            <option value="Australia">Australia</option>
+        </select>
+    </div>
+    <div>
+        <input type="button" id="bt" value="Save data to file" onclick="savefile()">
+    </div>
+      <script>
+        const p=document.querySelector("p");
+       p.addEventListener("click",()=>{
+        window.print()
+       })
+       const add=document.createElement("p");
+       add.innerHTML = "This is new text";
+       add.style.color="red";
+       add.style.position="absolute";
+       document.getElementById("animate").appendChild(add);
+       const ev=document.createEvent("MouseEvent");
+       ev.initEvent("mousedown",true,true,0,0,0,0,0,false,false,false,false,0,null);
+       document.getElementById("mouse").dispatchEvent(ev);
+       function display(e)
+       {
+        e.style.height="50px";
+        e.style.width="50px";
+       }
+       function hint(e)
+       {
+        e.style.height="32px";
+        e.style.width="32px";
+        
+       }
+       function addText(e){
+        e.innerHTML += " is new";
+       }
+       let savefile = () =>{
+        const name = document.getElementById("txtName");
+        const age=document.getElementById("txtAge");
+        const password =document.getElementById("txtPassword");
+        const country=document.getElementById("txtCountry");
+        const data = '\n' + "Your name: " + name.value + '\n'+ "Your age: " + age.value + '\n' + "Your password: " + password.value;
+
+        const textToBlob = new Blob([data], {type:'text/plain'});
+        const filename="info.txt";
+        let newLink=document.createElement("a");
+        newLink.download = filename;
+        if(window.webkitURL == null){
+            newLink.href=window.webkitURL.createObjectURL(textToBlob);
+            alert(newLink);
+        }
+        else{
+            newLink.href=window.URL.createObjectURL(textToBlob);
+            document.body.appendChild(newLink);
+        }
+        newLink.click();
+       }
+      </script>
+</body>
+
+</html>
